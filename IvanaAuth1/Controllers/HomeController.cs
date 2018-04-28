@@ -5,9 +5,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using IvanaAuth1.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace IvanaAuth1.Controllers
 {
+    
     public class HomeController : Controller
     {
         public IActionResult Index()
@@ -15,6 +17,7 @@ namespace IvanaAuth1.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
@@ -22,6 +25,7 @@ namespace IvanaAuth1.Controllers
             return View();
         }
 
+        [Authorize]
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
